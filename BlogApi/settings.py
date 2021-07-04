@@ -15,8 +15,11 @@ SECRET_KEY = 'django-insecure-2=3ci=r$z-#(%dc&#$ts6$+$(v=cm(chg#5u5c*lsq5x_=6d4r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
-                 '127.0.0.1', 'blogapiutkarsh.herokuapp.com']
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
+#                  '127.0.0.1', 'blogapiutkarsh.herokuapp.com']
+
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -29,10 +32,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api'
+    'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

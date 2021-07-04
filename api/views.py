@@ -35,6 +35,13 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = BlogSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'data': serializer.data})
+        return Response({'message': "Some Error Occurred"})
+
     def list(self, request, *args, **kwargs):
         obj = Blog.objects.all()
         response = BlogSerializer(obj, many=True)
